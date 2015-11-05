@@ -46,7 +46,10 @@
 ;drawing on doge
 (define text-target doge)
 (define dc (new bitmap-dc% [bitmap text-target]))
-(send dc set-font (make-font #:size 25 #:family 'decorative))
+(send dc set-font
+      (make-font #:size 25
+                 #:family 'decorative
+                 #:weight 'bold))
 
 ;actually drawing text
 (for-each

@@ -15,7 +15,7 @@
               "nice" "cool" "programming god"
               "lisper" "lambda" "C++ hater" "doge"))
 (define (colors)
-  '("red" "pink" "blue"))
+  '("red" "pink" "blue" "green" "yellow" "cyan"))
 
 (define (random-word my-list)
   ;gives a random member from a list
@@ -51,7 +51,7 @@
 ;actually drawing text
 (for-each
  (lambda (kw)
-     (send dc set-brush (random-word colors) 'panel)
+     (send dc set-text-foreground (random-word colors))
      (send dc draw-text kw (random 700) (random 500)))
  (make-sentences user-keywords))
 
@@ -69,8 +69,3 @@
         (send dc draw-bitmap doge 0 0))]))
 
 (send f show #t)
-
-
-
-
-

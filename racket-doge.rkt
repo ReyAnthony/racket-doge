@@ -37,6 +37,7 @@
 ;issue in command line, will not print \n's
 (for-each
  (lambda (value)
-   (printf value)
-   (printf "\n"))
+   (display value)
+   (display "\n"))
  (make-sentences user-keywords))
+

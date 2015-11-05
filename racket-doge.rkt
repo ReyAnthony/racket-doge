@@ -34,7 +34,6 @@
              (shuffle(my-list)))))
 
 ;print result
-;issue in command line, will not print \n's
 (for-each
  (lambda (value)
    (display value)

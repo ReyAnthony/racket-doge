@@ -29,7 +29,7 @@
               "nice" "cool" "programming god"
               "lisper" "lambda" "C++ hater" "doge"))
 (define (colors)
-  '("red" "pink" "blue" "green" "yellow" "cyan"))
+  '("red" "magenta" "blue" "green" "yellow" "cyan"))
 
 (define (random-word my-list)
   ;gives a random member from a list
@@ -55,7 +55,7 @@
                  (shuffle (my-list))))))
 
 (define doge
-  (read-bitmap "plainDoge.jpg"))
+  (read-bitmap "./plainDoge.jpg"))
 
 ;drawing on doge
 (define text-target doge)
@@ -68,21 +68,23 @@
 ;actually drawing text
 (for-each
  (lambda (kw)
-     (send dc set-text-foreground (random-word colors))
-     (send dc draw-text kw (random 700) (random 500)))
+   (send dc set-text-foreground (random-word colors))
+   (send dc draw-text kw (random 700) (random 500)))
  (make-sentences user-keywords))
 
 ;frame
-(define f (new frame%
-               [label "racket-doge"]
-               [width 700]
-               [height 500]
-               [style (list 'no-resize-border)]))
+(define main-frame (new frame%
+                        [label "racket-doge"]
+                        [width 700]
+                        [height 500]
+                        [style (list 'no-resize-border)]))
 ;canvas
 (define my-canvas
-  (new canvas% [parent f]
-     [paint-callback
-      (lambda (canvas dc)
-        (send dc draw-bitmap doge 0 0))]))
+  (new canvas% [parent main-frame]
+       [paint-callback
+        (lambda (canvas dc)
+          (send dc draw-bitmap doge 0 0))]))
 
-(send f show #t)
+(send main-frame show #t)
+
+

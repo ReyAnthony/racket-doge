@@ -52,7 +52,7 @@
       (cons wow 
             (map make-sentence
                  (shuffle my-list)))))
-     
+
 ;frame
 (define (create-parent-frame)
   (new frame%
@@ -76,10 +76,10 @@
 ;font management
 (define (set-font my-dc)
   (send my-dc set-font
-      (make-font #:size (+ 20 (random 5))
-                 #:family 'decorative
-                 #:face "Comic Sans MS"
-                 #:weight 'bold)))
+        (make-font #:size (+ 20 (random 5))
+                   #:family 'decorative
+                   #:face "Comic Sans MS"
+                   #:weight 'bold)))
 
 ;draw on doge
 (define (draw-text-with-keywords kwd my-dc) 
@@ -104,18 +104,16 @@
 
 ;buttons
 (define (gen-again-but horiz-panel user-entries my-dc p-frame)
-  (new button% [label "Generate again"]
+  (new button% [label "Wow !"]
        ;generate again
        [parent horiz-panel]
        ;[enabled #f]
        [callback
         (lambda (b e)
-          ;redraw not working on OSX ???
+          (send my-dc draw-bitmap (read-bitmap "plainDoge.jpg") 0 0)
           (draw-text-with-keywords
            (parse-user-input user-entries) my-dc)
-          ;shitty fix for restart issue
-          (send p-frame refresh)
-          (make-gui))]))
+          (send p-frame refresh))]))
 
 (define (save-but doge horiz-panel)
   (new button% [label "Save"]
@@ -123,9 +121,9 @@
        [parent horiz-panel]
        [callback
         (lambda (b e)
-           (send doge save-file
-                 "./generated_doge.png"
-                 'png))]))
+          (send doge save-file
+                "./generated_doge.png"
+                'png))]))
 
 
 ;let's make the GUI and run the whole program
@@ -147,5 +145,5 @@
             (gen-again-but horiz-panel user-entries my-dc p-frame)
             (save-but doge horiz-panel))))) 
     (send p-frame show #t)))
-  
+
 (make-gui)

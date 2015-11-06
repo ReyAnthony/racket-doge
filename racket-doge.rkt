@@ -19,13 +19,14 @@
          racket/draw)
 
 ;keywords definitions
+;TODO random capitalisation for first letter
 (define doge-keywords
   '("such" "much" "so" "very"))
 (define wow
   "Wow")
+
 (define user-keywords
-  '("purr" "claw" "hit" "cate" "mean"
-           "bad" "cry"))
+  '())
 (define colors
   '("red" "magenta" "blue" "green" "yellow" "cyan" "white"))
 
@@ -46,7 +47,7 @@
   ;make a list of sentences
   (if (null? my-list)
       ;return a list containing this message
-      '("Empty set of keywords !")
+      '()
       ;else
       (cons wow 
             (map make-sentence
@@ -112,7 +113,9 @@
           ;redraw not working on OSX ???
           (draw-text-with-keywords
            (parse-user-input user-entries) my-dc)
-           (send p-frame show #t))]))
+          ;shitty fix for restart issue
+          (send p-frame refresh)
+          (make-gui))]))
 
 (define (save-but doge horiz-panel)
   (new button% [label "Save"]
@@ -121,8 +124,8 @@
        [callback
         (lambda (b e)
            (send doge save-file
-                 "./generated_doge.jpg"
-                 'jpeg))]))
+                 "./generated_doge.png"
+                 'png))]))
 
 
 ;let's make the GUI and run the whole program
@@ -141,8 +144,8 @@
               ([user-entries (create-user-entries horiz-panel)]) 
             (draw-text-with-keywords
              (parse-user-input user-entries) my-dc)
-          (gen-again-but horiz-panel user-entries my-dc p-frame)
-           (save-but doge horiz-panel))) 
-        (send p-frame show #t)))))
+            (gen-again-but horiz-panel user-entries my-dc p-frame)
+            (save-but doge horiz-panel))))) 
+    (send p-frame show #t)))
   
 (make-gui)

@@ -6,4 +6,4 @@ It will allow, when it will, to automatically generate pictures of our beloved d
 
 To run / build it, just install DrRacket, load the source and run / compile. 
 
-![alt tag](http://anthonyrey.fr/uploads/projets/racket-doge/racket-doge.png)
+![alt tag](http://anthonyrey.fr/uploads/projets/racket-doge/racket-doge.jpg)
